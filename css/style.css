@@ -15,3 +15,14 @@
 .ng-leave-active{
 	opacity: 0;
 }*/
+
+
+
+.man_icon svg path {
+	fill:blue;
+	transition:1s;
+}
+
+.man_icon.active svg path {
+	fill:red;
+}
