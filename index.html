@@ -51,7 +51,7 @@
 				<div class=" col-md-12">
 					<div class="checkbox">
 						<label for="range">
-							Age
+							Age : {{age}}
 							<input type="range" name="points" min="60" max="75" ng-model="age">
 						</label>
 					</div>
@@ -69,9 +69,16 @@
 		<div class="row">
 			
 			<div class="col-md-8 col-md-offset-4">
-				<button type="button" class="btn btn-primary" onclick="window.location.href='#/row'">Rows</button>
-				<button type="button" class="btn btn-primary" onclick="window.location.href='#/area'">Area</button>
-				<button type="button" class="btn btn-primary" onclick="window.location.href='#/bar'">Bar Chart</button>
+				<div class="col-xs-4">
+					<button type="button" class="btn btn-primary graph-btn" onclick="window.location.href='#/row'">Rows</button>
+				</div>
+				<div class="col-xs-4">
+					<button type="button" class="btn btn-primary graph-btn" onclick="window.location.href='#/area'">Area</button>
+				</div>
+				<div class="col-xs-4">
+					<button type="button" class="btn btn-primary graph-btn" onclick="window.location.href='#/bar'">Bar Chart</button>
+				</div>
+				
 			</div>
 		</div>
 

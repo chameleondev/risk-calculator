@@ -53,7 +53,16 @@ app.controller('Risk', function($scope){
 
 			if(obj.hasOwnProperty(prop)){
 
-				console.log(obj.val);
+				if(prop !== "change_val"){
+					console.log(obj.val);
+					console.log(obj);
+					console.log(prop);
+					console.log(key);
+
+					// Math.round(obj.val/10)
+				}
+
+				
 			}
 		}
 
