@@ -1,75 +1,89 @@
-app.controller('Risk', function($scope){
+app.controller('Risk', function($scope,$http){
 
-	$scope.default = true;
-	$scope.female = false;
-	$scope.alf = false;
+	window.scope = $scope;
+
 	$scope.age = 60;
 
-	$scope.rows = {
-		noTherapy : {
-			val : 50,
-			change_val : {
-				female : 10,
-				alf : 20
-			}
-		},
-		aspirin : {
-			val : 75
-		},
-		vka : {
-			val : 17
-		},
-		noak : {
-			val : 12
-		},
-		round : function(treatment){
-			console.log((Math.round(this[treatment].val/10)));
+	$scope.treatments = {
+		no_therapy : 50,
+		aspirin : 75,
+		vka : 17,
+		noak : 12
+	}
+
+	$scope.fetch = function(){
+		$http.get('js/symptoms.json').success(function(data,status){
+
+			$scope.symptoms = data;
+
+
+		}).error(function(){
+
+			alert('error!');
+
+		});
+	}
+
+	$scope.fetch();
+
+	
+	$scope.changePercentage = function(obj){
+
+		var id = (obj.target.id);
+		//object of clicked elements json
+		 console.log($scope.symptoms[id].status)
+
+		for(key in $scope.treatments){
+
+			//value of the treatment
+			var val = $scope.treatments[key];
+			//difference 
+			var dif = $scope.symptoms[id][key];
+			//status of checkbox
+			var status = $scope.symptoms[id].status;
+
+			 // console.log(key);
+			 // console.log(val);
+
+			 if(val <= 100){
+
+			 	if(!status) {
+
+				 	$scope.treatments[key] = val + dif;
+
+				 }else{
+
+				 	$scope.treatments[key] = val - dif;
+
+				 }
+
+			 }
+
+			 
+
 		}
+
 	};
 
-	$scope.add = function(){
 
-		if(!$scope.female){
-			$scope.rows.noTherapy.val = $scope.rows.noTherapy.val+10;
-			$scope.rows.aspirin.val = $scope.rows.aspirin.val+5;
-			$scope.rows.vka.val = $scope.rows.vka.val+2;
-			$scope.rows.noak.val = $scope.rows.noak.val+40;
-		}else{
-			$scope.rows.noTherapy.val = $scope.rows.noTherapy.val-10;
-			$scope.rows.aspirin.val = $scope.rows.aspirin.val-5;
-			$scope.rows.vka.val = $scope.rows.vka.val-2;
-			$scope.rows.noak.val = $scope.rows.noak.val-40;
+	$scope.activeRows = function(){
+
+		$('.man_icon').removeClass('active');
+
+		for(var key in $scope.treatments){
+
+			var val = $scope.treatments[key];
+
+			val = Math.round(val/10);
+
+			$('.'+key+'_row .man_icon').slice(0,val).addClass('active');
+
 		}
 
-	for(var key in $scope.rows){
-
-		var obj = $scope.rows[key];
+	};
 
 
-		for (var prop in obj) {
 
-			// important check that this is objects own property 
-			// not from prototype prop inherited
-
-			if(obj.hasOwnProperty(prop)){
-
-				if(prop !== "change_val"){
-					console.log(obj.val);
-					console.log(obj);
-					console.log(prop);
-					console.log(key);
-
-					// Math.round(obj.val/10)
-				}
-
-				
-			}
-		}
-
-			
-	}
-		
-};
 
 
 });
@@ -84,6 +98,8 @@ app.controller('Row_Graph',function($scope){
 	// setTimeout(function(){
 	// 	$('.no_therapy_row .man_icon').slice(0,num).addClass('active');
 	// },200)
+
+	$scope.$parent.activeRows();
 
 
 });

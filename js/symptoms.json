@@ -1,0 +1,24 @@
+{
+	"female" : {
+		"no_therapy" : 10,
+		"aspirin" : 15,
+		"vka" : 5,
+		"noak" : 20,
+		"status" : false
+	},
+	"alf" : {
+		"no_therapy" : 10,
+		"aspirin" : 15,
+		"vka" : 5,
+		"noak" : 20,
+		"status" : false
+	},
+	"EOMAN" : {
+		"no_therapy" : 10,
+		"aspirin" : 15,
+		"vka" : 5,
+		"noak" : 20,
+		"status" : false
+	}
+
+}
