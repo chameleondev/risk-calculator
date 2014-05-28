@@ -16,6 +16,17 @@
 	opacity: 0;
 }*/
 
+h1{
+	margin-bottom: 30px;
+}
+
+.main-area{
+	min-height: 400px;
+}
+
+.man-row{
+	margin: 10px 0;
+}
 
 
 .man_icon svg path {
