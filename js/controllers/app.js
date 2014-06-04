@@ -83,6 +83,10 @@ app.controller('Risk', function($scope,$http){
 	};
 
 
+	
+
+
+
 
 
 
@@ -100,6 +104,49 @@ app.controller('Row_Graph',function($scope){
 	// },200)
 
 	$scope.$parent.activeRows();
+
+
+});
+
+
+app.controller('Bar_Graph',function($scope){
+
+	console.log($scope.$parent.treatments);
+
+	var treatments = $scope.$parent.treatments;
+
+	var data = [
+		treatments.no_therapy,
+		treatments.aspirin,
+		treatments.vka,
+		treatments.noak,
+	];
+
+	var canvas = d3.select('.bar_canvas')
+						.append('svg')
+						.attr('width',400)
+						.attr('height',400);
+
+	var group = canvas.append('g')
+				.attr('transform','skew(45)');
+
+	var dataScale = d3.scale.linear()
+						.domain([0,100])
+						.range([0,400]);
+
+	var colorScale = d3.scale.linear()
+					.domain([0,100])
+					.range(["red","blue"])
+
+	var bars = group.selectAll('rect')
+				.data(data)
+				.enter()
+				.append('rect')
+				.attr('x',function(d,i){return i * 100 })
+				.attr('width',50)
+				.attr('height',function(d){return dataScale(d)})
+				.attr('fill',function(d){return colorScale(d)});
+
 
 
 });

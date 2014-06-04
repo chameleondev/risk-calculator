@@ -10,6 +10,7 @@ app.config(function($routeProvider) {
 			templateUrl : 'partials/area.html'
 		})
 		.when('/bar',{
-			templateUrl : 'partials/bar.html'
+			templateUrl : 'partials/bar.html',
+			controller : 'Bar_Graph'
 		});
 });
