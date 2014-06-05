@@ -124,7 +124,7 @@ app.controller('Bar_Graph',function($scope){
 
 	var canvas = d3.select('.bar_canvas')
 						.append('svg')
-						.attr('width',400)
+						.attr('width',750)
 						.attr('height',400);
 
 	var group = canvas.append('g')
@@ -132,7 +132,7 @@ app.controller('Bar_Graph',function($scope){
 
 	var dataScale = d3.scale.linear()
 						.domain([0,100])
-						.range([0,400]);
+						.range([0,750]);
 
 	var colorScale = d3.scale.linear()
 					.domain([0,100])
@@ -142,9 +142,9 @@ app.controller('Bar_Graph',function($scope){
 				.data(data)
 				.enter()
 				.append('rect')
-				.attr('x',function(d,i){return i * 100 })
-				.attr('width',50)
-				.attr('height',function(d){return dataScale(d)})
+				.attr('y',function(d,i){return i * 100 })
+				.attr('width',function(d){return dataScale(d)})
+				.attr('height',50)
 				.attr('fill',function(d){return colorScale(d)});
 
 
