@@ -1,43 +1,17 @@
-.ng-enter{
-	transition: 1s;
-	opacity: 0;
-}
+.home{text-align: center;}
+.home h2{margin: 200px 0 40px;}
 
+
+.ng-enter{
+	transition:1s;
+	opacity: 0;
+	position: relative;
+	top: 50px;
+}
 .ng-enter-active{
 	opacity: 1;
+	top: 0;
 }
+.ng-leave{}
+.ng-leave-active{}
 
-/*.ng-leave{
-	transition: 1s;
-	opacity: 1;
-}
-
-.ng-leave-active{
-	opacity: 0;
-}*/
-
-h1{
-	margin-bottom: 30px;
-}
-
-.main-area{
-	min-height: 400px;
-}
-
-.man-row{
-	margin: 10px 0;
-}
-
-
-.man_icon svg path {
-	fill:#fff;
-	transition:1s;
-}
-
-.man_icon.active svg path {
-	fill:red;
-}
-
-.graph-btn{
-	width: 100%;
-}

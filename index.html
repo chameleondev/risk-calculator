@@ -1,104 +1,35 @@
-<!doctype html>
-<html lang="en" ng-app="Risk_Calculator">
+<!DOCTYPE html>
+<html lang="en" ng-app="risk-tool">
 <head>
 	<meta charset="UTF-8">
-	<title>Risk Calculator</title>
+	<title>Risk Tool</title>
+	<!-- <link rel="stylesheet" href="css/normalize.css"> -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/vendor/bootstrap.min.css">
 </head>
-<body ng-controller="Risk">
+<body>
 
 	<div class="container">
 
 		<div class="page-header">
-		  <h1>Risk Assessment <!-- <small>Subtext for header</small> --></h1>
-		</div>
-	
-
-		<div class="row main-area">
-
-
-
-			<div class="col-md-4">
-			<h3>Selections</h3>
-
-				<div class=" col-md-12">
-					<div class="checkbox">
-						<label for="default">
-							<input type="checkbox" name="default" ng-model="default" id="default">
-							Default
-						</label>
-					</div>
-				</div>
-
-
-				<div class=" col-md-12">
-					<div class="checkbox">
-						<label for="female">
-							<input type="checkbox" name="female" ng-model="symptoms.female.status" id="female" ng-click="changePercentage($event);activeRows()">
-							Female
-						</label>
-					</div>
-				</div>
-
-
-				<div class=" col-md-12">
-					<div class="checkbox">
-						<label for="alf">
-							<input type="checkbox" name="alf" ng-model="symptoms.alf.status" id="alf" ng-click="changePercentage($event);activeRows();dillon();">
-							Abnormal Liver Function
-						</label>
-					</div>
-				</div>
-
-				<div class=" col-md-12">
-					<div class="checkbox">
-						<label for="range">
-							Age : {{age}}
-							<input type="range" name="points" min="60" max="75" ng-model="age">
-						</label>
-					</div>
-				</div>
-
-			</div>
-
-
-			<div class="col-md-8 view-animate" ng-view>
-				
-			</div>
-
+		  <h1>Risk Tool</h1>
 		</div>
 
-		<div class="row">
+
+		<div class="main-body" ng-view ng-animate>
 			
-			<div class="col-md-8 col-md-offset-4">
-				<div class="col-xs-4">
-					<button type="button" class="btn btn-primary graph-btn" onclick="window.location.href='#/row'" ng-click="activeRows()">Rows</button>
-				</div>
-				<div class="col-xs-4">
-					<button type="button" class="btn btn-primary graph-btn" onclick="window.location.href='#/area'">Area</button>
-				</div>
-				<div class="col-xs-4">
-					<button type="button" class="btn btn-primary graph-btn" onclick="window.location.href='#/bar'">Bar Chart</button>
-				</div>
-				
-			</div>
+
 		</div>
 
 	</div>
-
 	
 
-	
-	<script type="text/javascript" src="js/vendor/angular.min.js"></script>
-	<script type="text/javascript" src="js/vendor/angular-route.min.js"></script>
-	<script type="text/javascript" src="js/vendor/angular-animate.min.js"></script>
-	<script type="text/javascript" src="js/vendor/jquery2.1.1.min.js"></script>
-	<script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
-	<script type="text/javascript" src="js/controllers/app.js"></script>
-	<script type="text/javascript" src="js/controllers/app.js"></script>
-
-	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="js/vendor/angular.min.js"></script>
+	<script src="js/vendor/angular-route.min.js"></script>
+	<script src="js/vendor/angular-animate.min.js"></script>
+	<script src="js/vendor/underscore.min.js"></script>
+	<script src="js/vendor/d3.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/controllers/controllers.js"></script>
 </body>
 </html>
