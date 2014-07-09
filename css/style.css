@@ -30,7 +30,7 @@ h1{
 
 
 .man_icon svg path {
-	fill:blue;
+	fill:#fff;
 	transition:1s;
 }
 

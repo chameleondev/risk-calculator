@@ -11,7 +11,7 @@ app.controller('Risk', function($scope,$http){
 		noak : 12
 	}
 
-	$scope.fetch = function(){
+	
 		$http.get('js/symptoms.json').success(function(data,status){
 
 			$scope.symptoms = data;
@@ -22,9 +22,7 @@ app.controller('Risk', function($scope,$http){
 			alert('error!');
 
 		});
-	}
 
-	$scope.fetch();
 
 	
 	$scope.changePercentage = function(obj){
@@ -45,7 +43,7 @@ app.controller('Risk', function($scope,$http){
 			 // console.log(key);
 			 // console.log(val);
 
-			 if(val <= 100){
+			 
 
 			 	if(!status) {
 
@@ -57,11 +55,11 @@ app.controller('Risk', function($scope,$http){
 
 				 }
 
-			 }
-
 			 
 
 		}
+
+		$scope.$broadcast('updateData');
 
 	};
 
@@ -127,8 +125,7 @@ app.controller('Bar_Graph',function($scope){
 						.attr('width',750)
 						.attr('height',400);
 
-	var group = canvas.append('g')
-				.attr('transform','skew(45)');
+	var group = canvas.append('g');
 
 	var dataScale = d3.scale.linear()
 						.domain([0,100])
@@ -136,17 +133,50 @@ app.controller('Bar_Graph',function($scope){
 
 	var colorScale = d3.scale.linear()
 					.domain([0,100])
-					.range(["red","blue"])
+					.range(["blue","red"]);
 
 	var bars = group.selectAll('rect')
 				.data(data)
 				.enter()
 				.append('rect')
-				.attr('y',function(d,i){return i * 100 })
-				.attr('width',function(d){return dataScale(d)})
+				.attr('y',function(d,i){return i * 100;})
+				.attr('width',0)
 				.attr('height',50)
-				.attr('fill',function(d){return colorScale(d)});
+				.attr('fill',function(d){return colorScale(d);})
+				.transition()
+				.duration(1000)
+				.attr('width',function(d){return dataScale(d);});
+
+	var text = group.selectAll('text')
+				.data([
+					"No therapy",
+					"Aspirin",
+					"VKA",
+					"NOAK"
+				])
+				.enter()
+				.append('text')
+				.text(function(d,i){return d;})
+				.attr('y',function(d,i){return i * 100 + 30;})
+				.attr('x',20)
+				.attr('fill','white');
 
 
 
+	$scope.$on('updateData',function(){
+
+		data = [
+			treatments.no_therapy,
+			treatments.aspirin,
+			treatments.vka,
+			treatments.noak,
+		];
+
+		group.selectAll('rect')
+		.data(data)
+		.transition()
+		.duration(1000)
+		.attr('fill',function(d){return colorScale(d);})
+		.attr('width',function(d){return dataScale(d);});
+	});
 });
